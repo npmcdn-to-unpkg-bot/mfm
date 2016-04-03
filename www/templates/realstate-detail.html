@@ -1,0 +1,68 @@
+
+<ion-view>
+  <ion-nav-title>{{viewTitle}}</ion-nav-title>
+  <ion-content class="padding">
+
+    <!-- Realstated details -->
+    <div class="card">
+      <div class="item item-divider">
+        {{ 'realstateDetails.title' | translate}}
+      </div>
+      <div class="item item-text-wrap">
+        {{ 'realstate.name' | translate }}: <b> {{realstate.name}} </b> <br/>
+        {{ 'realstate.building' | translate }}: <b> {{realstate.building}} </b> <br/>
+        {{ 'realstate.address' | translate }}: <b> {{realstate.address}} </b> <br/>
+        {{ 'realstate.status' | translate }}: <b> {{'realstates.' + realstate.state | translate}} </b> <br/>
+        
+      </div>
+    </div>
+
+    <!-- Rent button -->
+    <div class="button-bar" ng-show="realstate.state === 'vacant'">
+      <a class="button button-positive" href="#app/contracts/new/{{realstate.id}}">
+        {{ 'realstateDetails.rent' | translate}}
+      </a>
+    </div>
+
+    <br/>
+    <!-- Income & Expanses Buttons -->
+    <div class="button-bar">
+      <a class="button button-calm" href="#/app/realstates/{{realstate.id}}/expanses"> 
+        {{ 'realstateDetails.expanses' | translate }}
+      </a>
+      <a class="button button-balanced" href="#/app/realstates/{{realstate.id}}/income">
+        {{ 'realstateDetails.income' | translate }}
+      </a>
+    </div>
+
+    <!-- Contract summary card -->
+    <div class="list card" ng-show="realstate.state === 'full'">
+      <div class="item item-divider">
+        <div>Contract summary</div>
+      </div>
+
+      <div class="item item-acionts">
+        Renter: <b>{{currentContract.renter.name}}</b> <br/>
+        Remaining days: <b>{{realstate.remainingDays}}</b> <br/>
+        Duration:  <b>{{currentContract.startDate|date:'d/MM/yyyy'}} - {{currentContract.endDate|date:'d/MM/yyyy'}}</b>
+      </div>
+
+      <div class="item row">
+          <a class="col subdued balanced icon-left ion-document" href="#/app/contracts/{{currentContract.id}}">
+            View
+          </a>
+          <a class="col subdued calm icon-left ion-refresh" href="#/app/contracts/{{currentContract.id}}/renew" >
+            Renew
+          </a>
+          <a class="col-80 subdued assertive icon-left ion-ios-minus-outline" href="#" ng-click="finishContract()" >
+            Finish
+          </a>
+      </div>
+    </div>
+
+
+
+  </ion-content>
+
+
+</ion-view>

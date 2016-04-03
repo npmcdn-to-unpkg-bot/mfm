@@ -1,0 +1,35 @@
+<ion-view view-title="Renewal">
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Renewal Info
+			</div>
+			<div class="item item-no-padding">
+				<div class="row">
+					<div class="col">Renewal date: </div>
+					<div class="col"> <b> {{renewal.renewalDate|date:'dd/MM/yyyy'}} </b> </div>
+				</div>
+				<div class="row">
+					<div class="col">End date: </div>
+					<div class="col"> <b> {{renewal.endDate|date:'dd/MM/yyyy'}} </b> </div>
+				</div>
+				<div class="row">
+					<div class="col">No of days: </div>
+					<div class="col"> <b> {{renewal.durationInDays}} </b> </div>
+				</div>
+				<div class="row">
+					<div class="col">Total: </div>
+					<div class="col"> <b> {{renewal.total|number:2}} </b> </div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="button-bar padding">
+			<a class="button icon-left ion-edit button-calm" href="#/app/contracts/{{stateParams.contractId}}/renew/{{renewal.id}}/edit">
+				Edit
+			</a>
+			<a class="button icon-left ion-minus-circled button-assertive" href="#">
+				Delete
+			</a>
+		</div> -->
+	</ion-content>
+</ion-view>

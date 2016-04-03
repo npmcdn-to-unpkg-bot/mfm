@@ -1,0 +1,55 @@
+/* Empty. Add your own CSS if you like */
+
+
+.item-divider-input {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.item input[type="number"], input[type="date"] {
+	text-align: right;
+	// max-height: 20px;
+}
+
+.card .item.item-input input {
+	padding-right: 16px;
+}
+
+.item .item-number{
+	text-align: right; 
+	padding-right: 5px
+}
+.item-actions {
+	padding-bottom: 0px;
+}
+
+.number {
+	text-align: right;
+}
+
+.right {
+	text-align: right;
+}
+
+.item-no-padding {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.item hr{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.item .col{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.subdued{
+	padding-left: 0px
+}
+
+.bar-footer {
+	height: 55px;
+}

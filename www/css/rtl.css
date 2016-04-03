@@ -1,0 +1,29 @@
+.pane, .view {
+	direction: rtl;
+}
+.platform-android .bar .title{
+	right: 50px ;
+	text-align: right;
+}
+.item .badge {
+	left: 32px;
+	right: auto;
+}
+
+.item-icon-right .icon-accessory {
+	right: auto;
+	left: 3px;
+}
+
+.overflow-scroll > .scroll {
+	z-index: = -99;
+}
+
+.button-bar > .button:first-child {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.button-bar > .button:last-child {
+    border-right-width: 1px;
+    border-radius: 4px 0px 0px 4px;
+}

@@ -1,0 +1,208 @@
+<ion-view view-title="{{view.title}}" >
+  <ion-content class="padding">
+    <!-- Realstate info -->
+    <div class="card">
+    	<div class="item item-divider row">
+    		<span class="col">Realstate info</span> 
+    		<a class="subdued col-20 right" href="#/app/realstates/{{contract.realstate.id}}">
+    			more
+    		</a>	
+    	</div>
+    	<div class="item item-no-padding">
+    		<div class="row">
+    			<div class="col-20">Name</div>
+    			<div class="col subdued"><b>{{contract.realstate.name}}</b></div>
+    		</div>
+    		<div class="row">
+    			<div class="col-20">Building</div>
+    			<div class="col"><b>{{contract.realstate.building}}</b></div>
+    		</div>
+    	</div>
+    </div>
+
+    <!-- Renter info -->
+    <div class="card">
+    	<div class="item item-divider row">
+    		<span class="col">Renter Info</span>
+    		<a href="#/app/people/{{contract.renter.id}}" class="col subdued right">more</a>
+    	</div>
+    	<div class="item item-no-padding">
+    		<div class="row">
+    			<div class="col-20">Name</div>
+    			<div class="col subdued" ><b>{{contract.renter.name}}</b></div>
+    		</div>
+    		<div class="row">
+    			<div class="col-20">Phone</div>
+    			<div class="col"><b>{{contract.renter.phone1}}</b></div>
+    		</div>
+    	</div>
+      		
+    	<div class="item item-divider" ng-show="contract.companion1name">
+  	  	<span >Companion</span><span ng-show="contract.companion2name">s</span>
+    	</div>
+
+    	<!-- Companions -->
+    	<div class="item item-no-padding" ng-show="contract.companion1name">
+    		<div class="row">
+    			<div class="col-20">Name</div>
+    			<div class="col"><b>{{contract.companion1name}}</b></div>
+    		</div>
+    		<div class="row">
+    			<div class="col-20">Phone</div>
+    			<div class="col"><b>{{contract.companion1phone}}</b></div>
+    		</div>
+    	</div>
+
+    	<div class="item item-no-padding" ng-show="contract.companion2name">
+    		<div class="row">
+    			<div class="col-20">Name</div>
+    			<div class="col"><b>{{contract.companion2name}}</b></div>
+    		</div>
+    		<div class="row">
+    			<div class="col-20">Phone</div>
+    			<div class="col"><b>{{contract.companion2phone}}</b></div>
+    		</div>
+    	</div>
+
+    	<div class="item item-no-padding" ng-show="contract.companion3name">
+    		<div class="row">
+    			<div class="col-20">Name</div>
+    			<div class="col"><b>{{contract.companion3name}}</b></div>
+    		</div>
+    		<div class="row">
+    			<div class="col-20">Phone</div>
+    			<div class="col"><b>{{contract.companion3phone}}</b></div>
+    		</div>
+    	</div>
+
+   </div>
+   <div class="card">
+     <div class="item item-divider">
+      Duration
+     </div>
+
+   	<div class="item item-no-padding">
+  		<div class="row">
+  			<div class="col-30">Start date</div>
+  			<div class="col"><b>{{contract.startDate|date:'d/M/yyyy'}}</b></div>
+  		</div>
+  		<div class="row">
+  			<div class="col-30">End date</div>
+  			<div class="col"><b>{{contract.endDate|date:'d/M/yyyy'}}</b></div>
+  		</div>
+  		<div class="row">
+  			<div class="col-30">Duraion</div>
+  			<div class="col"><b>{{contract.durationInDays}} days</b></div>
+  		</div>
+    </div>
+
+  </div>	
+
+  <div class="card" ng-show="contract.broker">
+  	<div class="item item-divider row">
+   		<span class="col">Broker info </span>
+   		<a class="subdued col right"href="#/app/people/{{contract.broker.id}}">
+   			more
+   		</a>
+  	</div>
+    	<div class="item item-no-padding">
+    		<div>		
+  	  		<div class="row">
+  	  			<div class="col-20">Name</div>
+  	  			<a class="col subdued" ><b>{{contract.broker.name}}</b></a>
+  	  		</div>
+  	  		<div class="row">
+  	  			<div class="col-20">Phone</div>
+  	  			<div class="col"><b>{{contract.broker.phone1}}</b></div>
+  	  		</div>
+  	  		<div class="row">
+  	  			<div class="col-20">Address</div>
+  	  			<div class="col"><b>{{contract.broker.address}}</b></div>
+  	  		</div>
+    		</div>
+    	</div>
+    </div>
+   <!-- TOTAL -->
+   <div class="list card">
+     <div class="row item">
+       <div class="col">Total</div>
+       <div class="col item-number">{{contract.total}}</div>
+     </div>
+     <div class="row item">
+       <div class="col">Discount</div>
+       <div class="col item-number">{{contract.discount}}</div>
+     </div>
+     <div class="row item" ng-show="contract.broker">
+       <div class="col">Broker fees</div>
+       <div class="col item-number">{{contract.brokerCommission}}</div>
+     </div>
+     <div class="row item item-divider">
+       <div class="col">Grand total</div>
+       <div style="font-size: 20px; font-weight: bold;" class="col item-number ">{{contract.grandTotal}}</div>
+     </div>
+   </div>
+
+   <!-- Renewals -->
+   <ion-list ng-show="contract.renewals.length">
+     <ion-item class="item-divider">
+        Contract renewals
+     </ion-item>
+     <div ng-repeat="renewal in contract.renewals">
+       <ion-item class="item item-no-padding">
+
+       <div class="row">
+         <div class="col">
+           <h2>
+             {{renewal.durationInDays}} {{renewal.durationInDays>1?'days':'day'}}
+             <!-- in {{renewal.renewalDate|date:'d/M/yyyy'}} -->
+           </h2>
+         </div>
+         <div class="col">
+            <p class="right"><b>{{renewal.total|number:2}}</b></p>
+         </div>
+       </div>
+
+      <div class="col">
+        <p>until {{renewal.endDate|date:'dd/MM'}}</p>
+      </div>
+
+     </ion-item>
+
+     </div>
+      <a class="item item-icon-left calm" 
+          href="#/app/contracts/{{contract.id}}/renew/{{contract.renewals[contract.renewals.length-1].id}}/edit">
+        <i class="icon ion-edit"></i>
+        Edit latest renewal
+      </a>
+   </ion-list>
+
+
+   <br/>
+   <br/>
+
+   <div class="button-bar">
+      <a class="button icon-right ion-ios-refresh-outline button-calm"
+        href="#/app/contracts/{{contract.id}}/renew">
+        Renew
+      </a>
+      <div class="button icon-right ion-ios-checkmark button-positive">
+        Finish
+      </div>
+   </div>
+   <br/>
+   <div class="button-bar">
+      <div class="button icon-right ion-document button-dark" ng-click="getReport()">Printable Contract (PDF)</div>
+   </div> 
+
+   
+
+     <!-- virtual form to downlaod jsreport PDF -->
+  <form method='POST' target='_blank' action='https://0.0.0.0:4430/api/report' id='jsrForm'>
+    <input hidden='true' name='template[shortid]' value="NkTEJPr9g"/>
+    <input hidden='true' name='data' value="{{contract}}"/>
+    <input hidden='true' name='options[Content-Disposition]' value="attachment; filename={{getContractName()}}.pdf"/>
+  </form>
+
+  <br/>
+  </ion-content>
+</ion-view>

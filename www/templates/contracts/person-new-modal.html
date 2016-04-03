@@ -1,0 +1,30 @@
+<div class="modal">
+  <ion-header-bar >
+    <h1 class="title">Add Person</h1>
+    <button class="button button-icon icon ion-ios-close-outline" ng-click="cancelModalNewPerson()">
+    </button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <div class="list">
+      <!-- Name -->
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="modalNewPerson.new.name">
+      </label>
+      <!-- Phone -->
+      <label class="item item-input">
+        <span class="input-label">Phone</span>
+        <input type="text" ng-model="modalNewPerson.new.phone1">
+      </label>
+      <!-- Address -->
+      <label class="item item-input">
+        <span class="input-label">Address</span>
+        <input type="text" ng-model="modalNewPerson.new.address">
+      </label>
+      <br/>
+      <div class="button-bar"> 
+        <button class="button button-balanced button-outline" ng-click="closeModalNewPerson()">Save</button>
+      </div>
+  </ion-content>
+</div>

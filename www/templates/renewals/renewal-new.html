@@ -1,0 +1,50 @@
+<ion-view view-title={{viewTitel}}>
+	<ion-content>
+		<div class="list card">
+
+			<!-- Renewal date -->
+			<label class="item item-input">
+			  <span class="input-label">Renewal date</span>
+			  <input type="date" ng-model="model.renewalDate">
+			</label>
+
+			<!-- Duration in days -->
+			<label class="item item-input">
+			  <span class="input-label">Days</span>
+			  <input type="number" ng-model="model.durationInDays">
+			</label>
+
+			<!-- End date -->
+			<label class="item item-input">
+				<span class="input-label">End Date</span>
+				<input ng-model="model.endDate" type="date" />
+			</label>
+		</div>
+
+		<div class="list card">
+		  <div class="row item">
+		    <div class="col">Rental fees</div>
+		    <div class="col item-number">{{contract.realstate.rentalFees}}</div>
+		  </div>
+		  <div class="row item">
+		    <div class="col">Days</div>
+		    <div class="col item-number">{{model.durationInDays}}</div>
+		  </div>
+
+		  <div class="row item item-divider">
+		    <div class="col">Total</div>
+		    <div style="font-size: 20px; font-weight: bold;" class="col item-number ">
+		    	{{model.total}}
+		    </div>
+		  </div>
+		</div>
+		<div class="button-bar padding">
+			<a class="button button-positive" ng-click="renew()" ng-show="isNew">Renew</a>
+		</div>
+		<div class="button-bar padding">
+			<a class="button button-calm icon-left ion-edit" ng-click="update()" ng-show="isEdit">Update</a>
+			<a class="button button-assertive icon-left ion-minus-circled" ng-click="remove()" ng-show="isEdit">Delete</a>
+		</div>
+
+	</ion-content>
+</ion-view>
