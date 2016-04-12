@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('ContractController', function($scope, $stateParams, RealStates, WizardHandler, $ionicModal, 
-	PeopleServices, $filter, JSReport, $sce, Contracts, $state, RealstateDetailsService) {
+	PeopleServices, $filter, JSReport, $sce, Contracts, $state, RealstateDetailsService, toastr) {
 
 
 	$scope.model = {
@@ -40,21 +40,8 @@ angular.module('starter.controllers')
 		$scope.model.companions.splice(index, 1);
 	}
 
-	console.log($scope.model.realstate);
-	//
 	$scope.readOnly = false;
-	var _people;
 
-	// ------------------ WIZARD ------------------
-	//Wizard navigation
-	$scope.next = function(){
-		WizardHandler.wizard().next();
-		WizardHandler.curr
-	} 
-
-	$scope.previous = function(){
-		WizardHandler.wizard().previous();	
-	}
 
 	// --------------- PEOPLE MODEL ---------------
 	//Select renter model
@@ -80,26 +67,27 @@ angular.module('starter.controllers')
 	 })  
 
 
+	 //hold the current person type
+	 var currentPeopleType = null;
+	 var _people;
 
 	 //Filter people by type
-	 function filterPeople() {
+	 function filterPeopleByType() {
 	 	$scope.people = $filter('filter')(_people, {'name': $scope.modalPeople.inputFilter, 'type': currentPeopleType});
 	 }
 
 	 $scope.onPeopleFilterChange = function() {
-	 	filterPeople();
+	 	filterPeopleByType();
 	 	if($scope.people.length <= 1) {
 	 		console.log('you should get more people from backend!');
 	 		getPeopleList($scope.modalPeople.inputFilter, currentPeopleType);
 	 	}
 	 }
 
-	 //hold the current person type
-	 var currentPeopleType = null;
 	 
 	 $scope.openModalPeople = function(type) {
 	 	currentPeopleType = type === undefined ? 'renter' : type;
-	 	$scope.newPersonLabel = type === 'renter' ? 'New renter' : 'New broker';
+	 	$scope.newPersonLabel = (type === 'renter') ? $filter('translate')('personSelectModal.newRenter') : $filter('translate')('personSelectModal.newBroker');
 	 	//initial list
 	 	if($scope.people === undefined){
 	 		// console.log('getting people for the first time!');
@@ -107,7 +95,7 @@ angular.module('starter.controllers')
 	 	}
 
 	   $scope.modalPeople.show();
-	   filterPeople()
+	   filterPeopleByType()
 	 }
 
 	 $scope.closeModalPeople = function(person) {
@@ -152,11 +140,19 @@ angular.module('starter.controllers')
 	 	});
 	 }
 
+	 // when add companion pressed
 	 $scope.closeModalCompanion = function() {
 	 	$scope.modalCompanion.hide();
-	 	$scope.model.companions.push($scope.modalCompanion.new);
-	 	$scope.modalCompanion.new.name = null;
-	 	$scope.modalCompanion.new.phone = null;
+	 	$scope.model.companions.push({
+	 		name: $scope.modalCompanion.new.name,
+	 		phone: $scope.modalCompanion.new.phone,
+	 	});
+	 	
+	 	if($scope.modalCompanion.new){
+		 	$scope.modalCompanion.new.name = null;
+		 	$scope.modalCompanion.new.phone = null;
+	 	}
+	 		
 	 }
 
 	 $scope.cancelModalCompanion = function() {
@@ -211,7 +207,7 @@ angular.module('starter.controllers')
 	 function getPeopleList(_filter, _type){	 
 	 	PeopleServices.all(_filter?_filter:undefined, _type).then(function(list){
 	 		_people = list;
-	 		filterPeople();
+	 		filterPeopleByType();
 	 	});
 	 }
 	 
@@ -234,6 +230,7 @@ angular.module('starter.controllers')
      	}
      	
 		Contracts.save($scope.model).then(function(contract){
+			toastr.success($filter('translate')('newContract.msgSaveSuccess'));
 			RealstateDetailsService.refreshData();
 			$state.go('app.contract-view', {contractId: contract.id});
 		}); 

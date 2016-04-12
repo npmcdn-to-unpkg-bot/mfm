@@ -1,20 +1,21 @@
-<ion-view view-title="{{view.title}}" >
+<ion-view>
+  <ion-nav-title>{{view.title}}</ion-nav-title>
   <ion-content class="padding">
     <!-- Realstate info -->
     <div class="card">
     	<div class="item item-divider row">
-    		<span class="col">Realstate info</span> 
+        <span class="col"> {{ 'contractView.realstateInfo' | translate }} </span> 
     		<a class="subdued col-20 right" href="#/app/realstates/{{contract.realstate.id}}">
-    			more
+    			{{ 'contractView.more' | translate }} 
     		</a>	
     	</div>
     	<div class="item item-no-padding">
     		<div class="row">
-    			<div class="col-20">Name</div>
+    			<div class="col-20"> {{ 'contractView.realstateName' | translate }} </div>
     			<div class="col subdued"><b>{{contract.realstate.name}}</b></div>
     		</div>
     		<div class="row">
-    			<div class="col-20">Building</div>
+    			<div class="col-20"> {{ 'contractView.building' | translate }} </div>
     			<div class="col"><b>{{contract.realstate.building}}</b></div>
     		</div>
     	</div>
@@ -23,121 +24,128 @@
     <!-- Renter info -->
     <div class="card">
     	<div class="item item-divider row">
-    		<span class="col">Renter Info</span>
-    		<a href="#/app/people/{{contract.renter.id}}" class="col subdued right">more</a>
+    		<span class="col"> {{ 'contractView.renterInfo' | translate }} </span>
+    		<a href="#/app/people/{{contract.renter.id}}" class="col subdued right">
+        {{ 'contractView.more' | translate }} </a>
     	</div>
     	<div class="item item-no-padding">
     		<div class="row">
-    			<div class="col-20">Name</div>
+    			<div class="col-20"> {{ 'contractView.name' | translate }} </div>
     			<div class="col subdued" ><b>{{contract.renter.name}}</b></div>
     		</div>
     		<div class="row">
-    			<div class="col-20">Phone</div>
+    			<div class="col-20"> {{ 'contractView.phone' | translate }} </div>
     			<div class="col"><b>{{contract.renter.phone1}}</b></div>
     		</div>
     	</div>
       		
     	<div class="item item-divider" ng-show="contract.companion1name">
-  	  	<span >Companion</span><span ng-show="contract.companion2name">s</span>
+  	  	<span ng-hide="contract.companion2name"> 
+          {{ 'contractView.singularOfcompanion' | translate }} </span>
+        <span ng-show="contract.companion2name"> 
+          {{ 'contractView.pluralOfCompanion' | translate }} </span>
     	</div>
 
     	<!-- Companions -->
     	<div class="item item-no-padding" ng-show="contract.companion1name">
     		<div class="row">
-    			<div class="col-20">Name</div>
+    			<div class="col-20"> {{ 'contractView.companion1Name' | translate }} </div>
     			<div class="col"><b>{{contract.companion1name}}</b></div>
     		</div>
     		<div class="row">
-    			<div class="col-20">Phone</div>
+    			<div class="col-20"> {{ 'contractView.companionPhone' | translate }} </div>
     			<div class="col"><b>{{contract.companion1phone}}</b></div>
     		</div>
     	</div>
 
     	<div class="item item-no-padding" ng-show="contract.companion2name">
     		<div class="row">
-    			<div class="col-20">Name</div>
+    			<div class="col-20"> {{ 'contractView.companion2Name' | translate }} </div>
     			<div class="col"><b>{{contract.companion2name}}</b></div>
     		</div>
     		<div class="row">
-    			<div class="col-20">Phone</div>
+    			<div class="col-20"> {{ 'contractView.companionPhone' | translate }} </div>
     			<div class="col"><b>{{contract.companion2phone}}</b></div>
     		</div>
     	</div>
 
     	<div class="item item-no-padding" ng-show="contract.companion3name">
     		<div class="row">
-    			<div class="col-20">Name</div>
+    			<div class="col-20"> {{ 'contractView.companion3Name' | translate }} </div>
     			<div class="col"><b>{{contract.companion3name}}</b></div>
     		</div>
     		<div class="row">
-    			<div class="col-20">Phone</div>
+    			<div class="col-20"> {{ 'contractView.companionPhone' | translate }} </div>
     			<div class="col"><b>{{contract.companion3phone}}</b></div>
     		</div>
     	</div>
-
    </div>
+
+   <!-- Duration -->
    <div class="card">
      <div class="item item-divider">
-      Duration
+       {{ 'contractView.duration' | translate }} 
      </div>
 
    	<div class="item item-no-padding">
   		<div class="row">
-  			<div class="col-30">Start date</div>
+  			<div class="col-20"> {{ 'contractView.startDate' | translate }} </div>
   			<div class="col"><b>{{contract.startDate|date:'d/M/yyyy'}}</b></div>
   		</div>
   		<div class="row">
-  			<div class="col-30">End date</div>
+  			<div class="col-20">{{ 'contractView.endDate' | translate }} </div>
   			<div class="col"><b>{{contract.endDate|date:'d/M/yyyy'}}</b></div>
   		</div>
   		<div class="row">
-  			<div class="col-30">Duraion</div>
-  			<div class="col"><b>{{contract.durationInDays}} days</b></div>
+  			<div class="col-20">{{ 'contractView.durationInDays' | translate }} </div>
+  			<div class="col"><b>{{contract.durationInDays}} {{ 'contractView.days' | translate }}</b></div>
   		</div>
     </div>
 
   </div>	
 
+  <!-- Broker info -->
   <div class="card" ng-show="contract.broker">
   	<div class="item item-divider row">
-   		<span class="col">Broker info </span>
+   		<span class="col">{{ 'contractView.brokerInfo' | translate }}  </span>
    		<a class="subdued col right"href="#/app/people/{{contract.broker.id}}">
-   			more
+   			{{ 'contractView.more' | translate }} 
    		</a>
   	</div>
     	<div class="item item-no-padding">
     		<div>		
   	  		<div class="row">
-  	  			<div class="col-20">Name</div>
-  	  			<a class="col subdued" ><b>{{contract.broker.name}}</b></a>
+  	  			<div class="col-20">{{ 'contractView.name' | translate }} </div>
+  	  			<div class="col" ><b>{{contract.broker.name}}</b></div>
   	  		</div>
   	  		<div class="row">
-  	  			<div class="col-20">Phone</div>
+  	  			<div class="col-20">{{ 'contractView.phone' | translate }} </div>
   	  			<div class="col"><b>{{contract.broker.phone1}}</b></div>
   	  		</div>
   	  		<div class="row">
-  	  			<div class="col-20">Address</div>
+  	  			<div class="col-20">{{ 'contractView.address' | translate }} </div>
   	  			<div class="col"><b>{{contract.broker.address}}</b></div>
   	  		</div>
     		</div>
     	</div>
     </div>
+
    <!-- TOTAL -->
    <div class="list card">
      <div class="row item">
-       <div class="col">Total</div>
+       <div class="col">{{ 'contract.total' | translate }} </div>
        <div class="col item-number">{{contract.total}}</div>
      </div>
      <div class="row item">
-       <div class="col">Discount</div>
+       <div class="col">{{ 'contract.discount' | translate }} </div>
        <div class="col item-number">{{contract.discount}}</div>
      </div>
      <div class="row item" ng-show="contract.broker">
-       <div class="col">Broker fees</div>
+       <div class="col">{{ 'contract.brokerFees' | translate }} </div>
        <div class="col item-number">{{contract.brokerCommission}}</div>
      </div>
      <div class="row item item-divider">
-       <div class="col">Grand total</div>
+       <div class="col">{{ 'contract.grandTotal' | translate }} </div>
        <div style="font-size: 20px; font-weight: bold;" class="col item-number ">{{contract.grandTotal}}</div>
      </div>
    </div>
@@ -145,7 +153,7 @@
    <!-- Renewals -->
    <ion-list ng-show="contract.renewals.length">
      <ion-item class="item-divider">
-        Contract renewals
+        {{ 'contractView.contractRenewals' | translate }} 
      </ion-item>
      <div ng-repeat="renewal in contract.renewals">
        <ion-item class="item item-no-padding">
@@ -153,7 +161,8 @@
        <div class="row">
          <div class="col">
            <h2>
-             {{renewal.durationInDays}} {{renewal.durationInDays>1?'days':'day'}}
+             {{renewal.durationInDays}} 
+             {{(renewal.durationInDays>1 ? 'contractView.days':'contractView.day') | translate}} 
              <!-- in {{renewal.renewalDate|date:'d/M/yyyy'}} -->
            </h2>
          </div>
@@ -163,16 +172,17 @@
        </div>
 
       <div class="col">
-        <p>until {{renewal.endDate|date:'dd/MM'}}</p>
+        <p>{{ 'contractView.until' | translate }}  {{renewal.endDate|date:'dd/MM'}}</p>
       </div>
 
      </ion-item>
 
      </div>
-      <a class="item item-icon-left calm" 
+      <a class="item calm" 
+          ng-class="(currentLanguage === 'ar' ? 'item-icon-right' : 'item-icon-left' )"
           href="#/app/contracts/{{contract.id}}/renew/{{contract.renewals[contract.renewals.length-1].id}}/edit">
         <i class="icon ion-edit"></i>
-        Edit latest renewal
+        {{ 'contractView.editLatestRenewal' | translate }} 
       </a>
    </ion-list>
 
@@ -180,24 +190,27 @@
    <br/>
    <br/>
 
+   <!-- Contract actions -->
    <div class="button-bar">
       <a class="button icon-right ion-ios-refresh-outline button-calm"
         href="#/app/contracts/{{contract.id}}/renew">
-        Renew
+        {{ 'contractView.Renew' | translate }} 
       </a>
-      <div class="button icon-right ion-ios-checkmark button-positive">
-        Finish
+      <div class="button icon-right ion-ios-minus-outline button-positive" ng-click="finishContract()">
+        {{ 'contractView.Finish' | translate }} 
       </div>
    </div>
    <br/>
    <div class="button-bar">
-      <div class="button icon-right ion-document button-dark" ng-click="getReport()">Printable Contract (PDF)</div>
+      <div class="button icon-right ion-document button-dark" ng-click="getReport()">
+        {{ 'contractView.getReport' | translate }} 
+      </div>
    </div> 
 
    
 
      <!-- virtual form to downlaod jsreport PDF -->
-  <form method='POST' target='_blank' action='https://0.0.0.0:4430/api/report' id='jsrForm'>
+  <form method='POST' target='_blank' action='https://192.168.1.70:4430/api/report' id='jsrForm'>
     <input hidden='true' name='template[shortid]' value="NkTEJPr9g"/>
     <input hidden='true' name='data' value="{{contract}}"/>
     <input hidden='true' name='options[Content-Disposition]' value="attachment; filename={{getContractName()}}.pdf"/>

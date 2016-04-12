@@ -19,7 +19,7 @@ angular.module('starter.controllers', ['mgo-angular-wizard'])
       rss.buildings.splice(0, rss.buildings.length);
       rss.realStates.splice(0, rss.realStates.length);
 
-      var map = new Map();
+
       // create buildings - used for realstate grouping
       for (var i = 0; i < list.length; i++){
         // adding realstates

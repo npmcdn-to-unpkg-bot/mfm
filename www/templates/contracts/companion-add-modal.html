@@ -1,6 +1,8 @@
-<div class="modal">
+<!-- We added arabic css class here because for some reason it's not RTL and if the RTL 
+was in html body then the views turned white after animation-->
+<div class="modal" ng-class="(currentLanguage === 'ar') ? 'arabic' : 'normalDirection'">
   <ion-header-bar >
-    <h1 class="title">Add Companion</h1>
+    <h1 class="title">{{ 'companionModal.title' | translate }}</h1>
     <button class="button button-icon icon ion-ios-close-outline" ng-click="cancelModalCompanion()">
     </button>
   </ion-header-bar>
@@ -9,17 +11,19 @@
       <div class="list">
         <!-- Name -->
         <label class="item item-input">
-          <span class="input-label">Name</span>
+          <span class="input-label">{{ 'companionModal.name' | translate }}</span>
           <input type="text" ng-model="modalCompanion.new.name">
         </label>
         <!-- Phone -->
         <label class="item item-input">
-          <span class="input-label">Phone</span>
+          <span class="input-label">{{ 'companionModal.phone' | translate }}</span>
           <input type="text" ng-model="modalCompanion.new.phone">
         </label>
         <br/>
         <div class="button-bar"> 
-          <button class="button button-balanced button-outline" ng-click="closeModalCompanion()">OK</button>
+          <button class="button button-balanced button-outline" ng-click="closeModalCompanion()">
+            {{ 'companionModal.addButton' | translate }}
+          </button>
         </div>
     </ion-content>
 </div>

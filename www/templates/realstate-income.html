@@ -1,39 +1,42 @@
 <ion-view>
-  <ion-nav-title>{{'Ralstate No #'}}</ion-nav-title>
+  <ion-nav-title>{{ 'income.title' | translate }}</ion-nav-title>
   <ion-content class="padding">
-  <h2>Income</h2>
+  <h3>{{ 'income.subtitle' | translate }}</h3>
   <!-- Income -->
   <div class="card">
     <div class="item item-divider row" >
-      <div class="col">February</div>
+      <div class="col">{{ 'income.sampleMonth' | translate }}</div>
       <div class="col">
       </div>
     </div>
     <div class="item" >
       <!-- Header -->
       <div class="row">
-        <div class="col"><b>Duration</b></div>
-        <div class="col number"><b>Amount</b></div>
-      </div>     
+        <div class="col-80"><b>{{ 'income.duration' | translate }}</b>
+        </div>
+         <div class="col-20"><b>{{ 'income.amount' | translate }}</b>
+         </div>
+      </div>
+
       <hr/>
       <!-- Income details -->
       <div class="row">
-        <div class="col">1/2 - 12/2</div>
-        <div class="col number">2,400.00</div>
+        <div class="col-80">1/2 - 12/2</div>
+        <div class="col-20 number">2,400.00</div>
       </div>        
       <div class="row">
-        <div class="col">15/2 - 25/2</div>
-        <div class="col number">2,200.00</div>
+        <div class="col-80">15/2 - 25/2</div>
+        <div class="col-20 number">222,200.00</div>
       </div>
       <div class="row">
-        <div class="col">26/2 - 29/2</div>
-        <div class="col number">660.00</div>
+        <div class="col-80">26/2 - 29/2</div>
+        <div class="col-20 number">660.00</div>
       </div>
       <hr/>
       <!-- footer / TOTAL -->
       <div class="row">
-        <div class="col"><b>TOTAL</b></div>
-        <div class="col number"><b>5,260.00</b></div>
+        <div class="col"><b>{{ 'income.total' | translate }}</b></div>
+        <div class="col-20 number"><b>5,260.00</b></div>
       </div>
       <hr style="border-top: 3px double" />
     </div>

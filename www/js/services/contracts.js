@@ -4,7 +4,10 @@
 * Description
 */
 angular.module('starter.services')
-.factory('Contracts', ['Restangular', 'PeopleServices', 'RealStates', function(Restangular, PeopleServices, RealStates){
+.factory('Contracts', 
+	['Restangular', 'PeopleServices', 'RealStates', '$ionicPopup', '$filter', 'toastr',
+	function(Restangular, PeopleServices, RealStates, $ionicPopup, $filter, toastr) {
+
 	// private
 	var contractService = Restangular.all('Contracts');
 	var renewService = Restangular.all('Renewals');
@@ -47,9 +50,22 @@ angular.module('starter.services')
 	}
 
 	function finish(id) {
-		//get the contract we want to finsih
-		return find(id, ['realstate']).then(function(contract){
-			return RealStates.release(contract.realstateID)
+		var confirmPopup = $ionicPopup.confirm({
+			title: $filter('translate')('contractFinish.title'),
+			template: $filter('translate')('contractFinish.template'),
+			cancelText: $filter('translate')('contractFinish.cancel'),
+       		okText: $filter('translate')('contractFinish.ok')
+		});
+		return confirmPopup.then(function(res){
+			if(res) {
+				//get the contract we want to finsih
+				return find(id, ['realstate']).then(function(contract){
+					return RealStates.release(contract.realstateID).then(function(rs) {
+						toastr.success($filter('translate')('contracts.msgFinishSuccess'));
+						return rs;
+					})
+				})
+			}
 		})
 	}
 

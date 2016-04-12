@@ -1,3 +1,11 @@
+.arabic {
+	direction: rtl;
+}
+
+.normalDirection {
+	direction: ltr;
+}
+
 .pane, .view {
 	direction: rtl;
 }
@@ -26,4 +34,60 @@
 .button-bar > .button:last-child {
     border-right-width: 1px;
     border-radius: 4px 0px 0px 4px;
+}
+
+
+.item input[type="number"], input[type="date"] {
+	text-align: left;
+}
+
+.card .item.item-input input {
+    padding-left: 16px;
+    padding-right: auto;
+}
+
+.item .item-number {
+    text-align: left;
+    padding-right: auto;
+    padding-left: 5px;
+}
+
+.title.title-left.header-item {
+    right: 60px !important;
+}
+
+.right {
+	text-align: left;
+}
+
+.popup {
+	direction: rtl;
+}
+
+.number {
+	text-align: right;
+}
+
+.toast {
+	text-align: right;
+}
+
+#toast-container > .toast-info {
+	padding-right: 50px;
+	background-position: 261px center;
+}
+
+#toast-container > .toast-error {
+	padding-right: 50px;
+	background-position: 261px center;
+}
+
+#toast-container > .toast-success {
+	padding-right: 50px;
+	background-position: 261px center;
+}
+
+#toast-container > .toast-warning {
+	padding-right: 50px;
+	background-position: 261px center;
 }

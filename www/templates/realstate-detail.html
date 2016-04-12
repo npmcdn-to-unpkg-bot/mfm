@@ -6,15 +6,18 @@
     <!-- Realstated details -->
     <div class="card">
       <div class="item item-divider">
-        {{ 'realstateDetails.title' | translate}}
+        {{ 'realstateDetails.title' | translate }}
       </div>
       <div class="item item-text-wrap">
         {{ 'realstate.name' | translate }}: <b> {{realstate.name}} </b> <br/>
         {{ 'realstate.building' | translate }}: <b> {{realstate.building}} </b> <br/>
         {{ 'realstate.address' | translate }}: <b> {{realstate.address}} </b> <br/>
         {{ 'realstate.status' | translate }}: <b> {{'realstates.' + realstate.state | translate}} </b> <br/>
-        
       </div>
+      <a class="item positive" ng-class="(currentLanguage === 'ar' ? 'item-icon-right' : 'item-icon-left' )" >
+        <i class="icon ion-edit"></i>
+        {{ 'realstateDetails.editRealstate' | translate }}
+      </a>
     </div>
 
     <!-- Rent button -->
@@ -23,6 +26,32 @@
         {{ 'realstateDetails.rent' | translate}}
       </a>
     </div>
+
+    <!-- Contract summary card -->
+    <div class="list card" ng-show="realstate.state === 'full'">
+      <div class="item item-divider">
+        <div> {{ 'realstateDetails.contractSummary' | translate }} </div>
+      </div>
+
+      <div class="item item-acionts">
+        {{ 'realstateDetails.renter' | translate }}: <b>{{currentContract.renter.name}}</b> <br/>
+        {{ 'realstateDetails.remainingDays' | translate }}: <b>{{realstate.remainingDays}}</b> <br/>
+        {{ 'realstateDetails.duration' | translate }}:  <b>{{currentContract.startDate|date:'d/MM/yyyy'}} - {{currentContract.endDate|date:'d/MM/yyyy'}}</b>
+      </div>
+
+      <div class="item row">
+          <a class="col subdued balanced icon-left ion-document" href="#/app/contracts/{{currentContract.id}}">
+            {{ 'realstateDetails.viewContract' | translate }}
+          </a>&nbsp &nbsp 
+          <a class="col subdued calm icon-left ion-refresh" href="#/app/contracts/{{currentContract.id}}/renew" >
+            {{ 'realstateDetails.renewContract' | translate }}
+          </a> &nbsp &nbsp 
+          <a class="col-80 subdued positive icon-left ion-ios-minus-outline" href="#" ng-click="finishContract()" >
+            {{ 'realstateDetails.finishContract' | translate }}
+          </a>
+      </div>
+    </div>
+
 
     <br/>
     <!-- Income & Expanses Buttons -->
@@ -35,30 +64,6 @@
       </a>
     </div>
 
-    <!-- Contract summary card -->
-    <div class="list card" ng-show="realstate.state === 'full'">
-      <div class="item item-divider">
-        <div>Contract summary</div>
-      </div>
-
-      <div class="item item-acionts">
-        Renter: <b>{{currentContract.renter.name}}</b> <br/>
-        Remaining days: <b>{{realstate.remainingDays}}</b> <br/>
-        Duration:  <b>{{currentContract.startDate|date:'d/MM/yyyy'}} - {{currentContract.endDate|date:'d/MM/yyyy'}}</b>
-      </div>
-
-      <div class="item row">
-          <a class="col subdued balanced icon-left ion-document" href="#/app/contracts/{{currentContract.id}}">
-            View
-          </a>
-          <a class="col subdued calm icon-left ion-refresh" href="#/app/contracts/{{currentContract.id}}/renew" >
-            Renew
-          </a>
-          <a class="col-80 subdued assertive icon-left ion-ios-minus-outline" href="#" ng-click="finishContract()" >
-            Finish
-          </a>
-      </div>
-    </div>
 
 
 

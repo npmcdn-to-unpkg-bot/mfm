@@ -1,13 +1,13 @@
 angular.module('starter.controllers')
 
 
-.controller('ContractViewController', function($scope, $stateParams, Contracts, $filter){
+.controller('ContractViewController', function($scope, $stateParams, Contracts, $filter, Navigator){
 	//
 	$scope.view = { title : 'Contract' };
 		console.log($scope.title);
 	Contracts.find($stateParams.contractId, ['renter', 'realstate', 'broker', 'renewals']).then(function(contract){
 		$scope.contract = contract;
-		$scope.view.title = 'Contract #' + contract.id + ' [ ' + $filter('date')(contract.contractDate,'d/M/yyyy') + ' ]';
+		$scope.view.title =  $filter('translate')('contractView.contract') + ' #' + contract.id + ' [ ' + $filter('date')(contract.contractDate,'d/M/yyyy') + ' ]';
 		console.log($scope.title);
 	});
 
@@ -28,5 +28,11 @@ angular.module('starter.controllers')
 				contractName += $scope.contract.renter.name.replace(' ', '_');
 			return contractName;
 		}
+	}
+	
+	$scope.finishContract = function() {
+		Contracts.finish($scope.contract.id).then(function(){
+			Navigator.goBack();
+		});
 	}
 })

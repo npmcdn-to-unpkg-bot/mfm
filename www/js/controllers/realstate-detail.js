@@ -1,7 +1,7 @@
 
 angular.module('starter.controllers')
 
-.controller('RealstateDetailController', function($scope, $stateParams, RealStates, Contracts, $timeout, $ionicPopup) {
+.controller('RealstateDetailController', function($scope, $stateParams, RealStates, Contracts) {
 	$scope.incomeToggle = false;
 	$scope.expansesToggle = false;
 	
@@ -26,15 +26,7 @@ angular.module('starter.controllers')
 	}
 	
 	$scope.finishContract = function() {
-		var confirmPopup = $ionicPopup.confirm({
-			title: 'Finish Contract?',
-			template: 'Are you sure you want finsih contract?' 
-		});
-		confirmPopup.then(function(res){
-			if(res) {
-				Contracts.finish($scope.currentContract.id);
-			}
-		})
+		Contracts.finish($scope.currentContract.id);
 	}
 
 

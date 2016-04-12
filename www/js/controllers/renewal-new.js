@@ -2,7 +2,7 @@
 angular.module('starter.controllers')
 
 // New renewal controller
-.controller('RenewNewController', function($scope, $stateParams, $state, Contracts, Renewals, Navigator){
+.controller('RenewNewController', function($scope, $stateParams, $state, Contracts, Renewals, Navigator, $filter, toastr){
 	console.log($stateParams.contractId);
 	$scope.isNew = true;
 	var latestEndDate;
@@ -28,6 +28,7 @@ angular.module('starter.controllers')
 
 	$scope.renew = function () {
 		Renewals.save($scope.model).then(function(renewal) {
+			toastr.success($filter('translate')('renewalNew.msgRenewSuccess'));
 			Navigator.goBack();
 			return renewal;
 		});
@@ -35,7 +36,7 @@ angular.module('starter.controllers')
 
 	$scope.$watch('model.durationInDays', function (newValue) {
 		if($scope.contract && $scope.contract.realstate){
-			$scope.model.endDate = Contracts.addDays(latestEndDate, newValue);
+		$scope.model.endDate = Contracts.addDays(latestEndDate, newValue);
 	   		$scope.model.total = $scope.model.durationInDays * $scope.contract.realstate.rentalFees;
 		}
 	});
@@ -43,10 +44,9 @@ angular.module('starter.controllers')
 })
 
 // Edit renewal controller
-.controller('RenewalEditController', function($timeout, $scope, Navigator, $stateParams, Contracts, Renewals, $ionicPopup){
+.controller('RenewalEditController', function($timeout, $scope, Navigator, $stateParams, Contracts, Renewals, $ionicPopup, $filter, toastr){
 	var lastStateName = '';
 	var lastStateParams = {};
-	$scope.viewTitel = 'Edit renewal';
 	$scope.isEdit = true;
 
 	Renewals.find($stateParams.renewalId).then(function(renewalModel){
@@ -66,6 +66,7 @@ angular.module('starter.controllers')
 
 	$scope.update = function () {
 		Renewals.update($scope.model).then(function(renewal) {
+			toastr.success($filter('translate')('renewalNew.msgUpdateSuccess'));
 			Navigator.goBack();
 			return renewal;
 		});
@@ -74,14 +75,18 @@ angular.module('starter.controllers')
 	$scope.$on('$destroy', function () {
 		console.log('💀')
 	});
+
 	$scope.remove = function () {
 		var confirmPopup = $ionicPopup.confirm({
-			title: 'Remove renewal?',
-			template: 'Are you sure you want remove it?' 
+			title: $filter('translate')('renewalNew.popupTitle'),
+			template: $filter('translate')('renewalNew.popupTemplate'),
+			cancelText: $filter('translate')('renewalNew.cancel'),
+       		okText: $filter('translate')('renewalNew.ok')
 		});
 		confirmPopup.then(function(res){
 			if(res) {
 				Renewals.remove($scope.model).then(function(renewal) {
+					toastr.success($filter('translate')('renewalNew.msgRemoveSuccess'));
 					Navigator.goBack();
 					return renewal;
 				});

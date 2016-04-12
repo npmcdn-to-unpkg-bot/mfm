@@ -1,4 +1,4 @@
-angular.module('starter.services', ['restangular'])
+angular.module('starter.services', ['restangular', 'toastr'])
 
 .factory('RealStates', function(Restangular, $q) {
 

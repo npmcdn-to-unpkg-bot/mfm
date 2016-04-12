@@ -8,6 +8,7 @@
     "restangular": "~1.5.1",
     "underscore": "~1.8.3",
     "angular-wizard": "~0.6.1",
-    "moment": "^2.11.2"
+    "moment": "^2.11.2",
+    "ionic-native-transitions": "shprink/ionic-native-transitions#^1.0.0-rc9"
   }
 }
