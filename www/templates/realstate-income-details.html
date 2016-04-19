@@ -17,14 +17,10 @@
 
       <hr/>
       <!-- Income details -->
-      <div ng-repeat="con in contracts">
+      <div ng-repeat="detail in details">
         <div class="row">
-          <div class="col-80">{{con.startDate | date:'MM/dd'}} - {{con.endDate | date:'MM/dd'}}</div>
-          <div class="col-20 number">{{con.grandTotal | number:2}}</div>
-        </div>
-        <div class="row" ng-repeat="renewal in con.renewals">
-          <div class="col-80">{{renewal.renewalDate | date:'MM/dd'}} - {{renewal.endDate | date:'MM/dd'}}</div>
-          <div class="col-20 number">{{con.total | number:2}}</div>
+          <div class="col-80">{{detail.startDate | date:'MM/dd'}} - {{detail.endDate | date:'MM/dd'}}</div>
+          <div class="col-20 number">{{detail.amount | number:2}}</div>
         </div>
       </div>        
           

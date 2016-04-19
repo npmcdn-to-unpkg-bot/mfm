@@ -27,6 +27,9 @@ angular.module('starter.controllers')
 	});
 
 	$scope.renew = function () {
+		// adding startDate to renewal model
+		$scope.model.startDate = latestEndDate;
+
 		Renewals.save($scope.model).then(function(renewal) {
 			toastr.success($filter('translate')('renewalNew.msgRenewSuccess'));
 			Navigator.goBack();

@@ -32,14 +32,14 @@ angular.module('starter.services')
 				where : { and :[
 					{ realstateID: id }, 
 					{
-						or: [
-							{and: [
-								{ startDate: { gte: monthFirstDay }}, 
+						and: [
+							{or: [
+								{ startDate: { lte: monthFirstDay }}, 
 								{ startDate: {lte: monthLastDay}} 
 							]},{
-						and: [
+						or: [
 							{ endDate: { gte: monthFirstDay }}, 
-							{ endDate: {lte: monthLastDay}} 
+							{ endDate: {gte: monthLastDay}} 
 						]},
 						]
 					}

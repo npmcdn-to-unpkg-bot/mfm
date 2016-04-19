@@ -8,7 +8,7 @@
   <div class="card list">
     <a class="item item-icon-right" 
     ng-repeat="monthIncome in incomeModel"
-    href="#/app/realstates/{{realstateID}}/income/{{year}}/{{monthIncome.month}}?allDays={{monthIncome.allDays}}">
+    href="#/app/realstates/{{realstateID}}/income/{{year}}/{{monthIncome.month}}">
     <div class="row">
       <h2 class="col-60">{{ 'income.month' + monthIncome.month | translate}}</h2>
       <div class="col-40"> {{ monthIncome.total | number:2}}</div>

@@ -1,7 +1,7 @@
 
   // Change the URL where to access the LoopBack REST API server
   // var burl = 'http://192.168.1.70:3000/api'
-  var burl = 'http://0.0.0.0:3000/api'
+  var burl = 'http://192.168.1.77:3000/api'
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules

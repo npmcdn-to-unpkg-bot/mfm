@@ -12,7 +12,8 @@ angular.module('starter.services', ['restangular', 'toastr'])
     remove: remove,
     release: release,
     get: get, 
-    income: income
+    income: income,
+    incomeDetails: incomeDetails,
   };
 
   function all () {
@@ -57,6 +58,10 @@ angular.module('starter.services', ['restangular', 'toastr'])
 
   function income(realstateID, year) {
     return realStatesService.customGET('income', {id: realstateID, year: year});
+  }
+
+  function incomeDetails(realstateID, year, month) {
+    return realStatesService.customGET('incomeDetails', {id: realstateID, year: year, month: month});
   }
 
 });
