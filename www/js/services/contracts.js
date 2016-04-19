@@ -16,10 +16,67 @@ angular.module('starter.services')
 	var Contracts = {
 		save: save,
 		findByRealstateId: findByRealstateId,
+		findAllByRealstateId: findAllByRealstateId,
 		find: find,
 		finish: finish,
 		addDays: addDays
 	};
+
+	return Contracts;
+
+	function findAllByRealstateId(id, month, year) {
+		var monthFirstDay = year + '-' + month + '-' + '1';
+		var monthLastDay = year + '-' + month + '-' + getDaysInMonth(parseInt(month), parseInt(year));
+		var filter = {
+			filter: JSON.stringify({
+				where : { and :[
+					{ realstateID: id }, 
+					{
+						or: [
+							{and: [
+								{ startDate: { gte: monthFirstDay }}, 
+								{ startDate: {lte: monthLastDay}} 
+							]},{
+						and: [
+							{ endDate: { gte: monthFirstDay }}, 
+							{ endDate: {lte: monthLastDay}} 
+						]},
+						]
+					}
+					]},
+				include: ['renewals']
+			})
+		}
+		return contractService.getList(filter).then(function(contracts) {
+			var monthSum = 0;
+			for(var i = 0 ; i < contracts.length; i++) {
+				var con = contracts[i];
+				var startDate = new Date(con.startDate);
+				var endDate = new Date(con.endDate);
+				monthFirstDay = new Date(monthFirstDay);
+				monthLastDay = new Date(monthLastDay);
+				if(monthFirstDay > startDate) {
+					con.startDate = monthFirstDay;
+				}
+				if(monthLastDay < endDate) {
+					con.endDate = monthLastDay;
+				}
+				con.total = (daysDiff(con.startDate, con.endDate) * con.rentalFees);
+				if(con.brokerCommissionPer > 0)
+					con.brokerCommission = con.total * (con.brokerCommissionPer / 100);
+				con.grandTotal = con.total - con.brokerCommission;
+				monthSum += con.grandTotal;
+
+				for(var r = 0; r < con.renewals.length; r++) {
+					monthSum += con.renewals[r].total;
+				}
+			}
+			return  { 
+				contracts: Restangular.stripRestangular(contracts),
+				monthSum: monthSum
+			};
+		});
+	}
 
 	function findByRealstateId(id){
 		var filter = {
@@ -30,7 +87,7 @@ angular.module('starter.services')
 				limit: 1
 			})
 		}
-		return contractService.getList(filter).then(function(contract){
+		return contractService.getList(filter).then(function(contract) {
 			return Restangular.stripRestangular(contract)[0];
 		});
 	}
@@ -146,5 +203,16 @@ angular.module('starter.services')
 	    return result;
 	}
 
-	return Contracts;
+	function getDaysInMonth(m, y) {
+	    return m===2 ? y & 3 || !(y%25) && y & 15 ? 28 : 29 : 30 + (m+(m>>3)&1);
+	}
+
+	function daysDiff(_a, _b) {
+		var a = moment(_a);
+		var b = moment(_b);
+		var diffDays = Math.round(b.diff(a, 'days', true));
+		console.log(diffDays);
+		return diffDays;
+	}
+
 }])

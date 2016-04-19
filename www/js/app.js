@@ -85,7 +85,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'menuContent': {
           templateUrl: 'templates/realstate-income.html',
-          // controller: 'RealstateIncomeController'
+          controller: 'RealstateIncomeController'
+        }
+      }
+    })
+    // Realstate => Inceom details 
+    .state('app.realstate-income-details', {
+      url: '/realstates/:realstateId/income/{year}/{month}',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/realstate-income-details.html',
+          controller: 'RealstateIncomeDetailController'
         }
       }
     })
@@ -322,10 +332,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     'income.subtitle': 'الشقة ٣',
     'income.duration': 'الفترة',
     'income.total': '',
+    'income.month1': 'يناير',
+    'income.month2': 'فبراير',
+    'income.month3': 'مارس',
+    'income.month4': 'ابريل',
+    'income.month5': 'مايو',
+    'income.month6': 'يونيو',
+    'income.month7': 'يوليو',
+    'income.month8': 'اغسطس',
+    'income.month9': 'سبتمبر',
+    'income.month10': 'اكتوبر',
+    'income.month11': 'نوفمبر',
+    'income.month12': 'ديسمبر',
+
     // TODO: remove sample data
     'income.sampleMonth': 'فبراير',
     'income.duration': 'المدة',
-    'income.amount': 'الدخل',
+    'income.amount': 'القيمة',
     'income.total': 'المجموع',
 
   });

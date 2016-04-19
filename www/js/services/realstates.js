@@ -12,6 +12,7 @@ angular.module('starter.services', ['restangular', 'toastr'])
     remove: remove,
     release: release,
     get: get, 
+    income: income
   };
 
   function all () {
@@ -52,6 +53,10 @@ angular.module('starter.services', ['restangular', 'toastr'])
       })
     }
     return deferred.promise;
+  }
+
+  function income(realstateID, year) {
+    return realStatesService.customGET('income', {id: realstateID, year: year});
   }
 
 });

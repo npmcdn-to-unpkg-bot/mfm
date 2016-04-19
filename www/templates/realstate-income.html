@@ -1,45 +1,20 @@
 <ion-view>
   <ion-nav-title>{{ 'income.title' | translate }}</ion-nav-title>
   <ion-content class="padding">
-  <h3>{{ 'income.subtitle' | translate }}</h3>
+  <h3 style="text-align: center;">
+    {{ 'income.subtitle' | translate }} - {{ year }}
+  </h3>
   <!-- Income -->
-  <div class="card">
-    <div class="item item-divider row" >
-      <div class="col">{{ 'income.sampleMonth' | translate }}</div>
-      <div class="col">
-      </div>
+  <div class="card list">
+    <a class="item item-icon-right" 
+    ng-repeat="monthIncome in incomeModel"
+    href="#/app/realstates/{{realstateID}}/income/{{year}}/{{monthIncome.month}}?allDays={{monthIncome.allDays}}">
+    <div class="row">
+      <h2 class="col-60">{{ 'income.month' + monthIncome.month | translate}}</h2>
+      <div class="col-40"> {{ monthIncome.total | number:2}}</div>
+      <i class="icon icon-accessory" ng-class="getIcon()"></i>
     </div>
-    <div class="item" >
-      <!-- Header -->
-      <div class="row">
-        <div class="col-80"><b>{{ 'income.duration' | translate }}</b>
-        </div>
-         <div class="col-20"><b>{{ 'income.amount' | translate }}</b>
-         </div>
-      </div>
-
-      <hr/>
-      <!-- Income details -->
-      <div class="row">
-        <div class="col-80">1/2 - 12/2</div>
-        <div class="col-20 number">2,400.00</div>
-      </div>        
-      <div class="row">
-        <div class="col-80">15/2 - 25/2</div>
-        <div class="col-20 number">222,200.00</div>
-      </div>
-      <div class="row">
-        <div class="col-80">26/2 - 29/2</div>
-        <div class="col-20 number">660.00</div>
-      </div>
-      <hr/>
-      <!-- footer / TOTAL -->
-      <div class="row">
-        <div class="col"><b>{{ 'income.total' | translate }}</b></div>
-        <div class="col-20 number"><b>5,260.00</b></div>
-      </div>
-      <hr style="border-top: 3px double" />
-    </div>
+    </a>
   </div>
   </ion-content>
 </ion-view>

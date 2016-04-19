@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-nav-title>{{ 'income.title' | translate }}</ion-nav-title>
+  <ion-content class="padding">
+  <h3 style="text-align: center;">
+    {{ 'income.month' + month | translate }}
+  </h3>
+  <!-- Income -->
+  <div class="card">
+    <div class="item" >
+      <!-- Header -->
+      <div class="row">
+        <div class="col-80"><b>{{ 'income.duration' | translate }}</b>
+        </div>
+         <div class="col-20"><b>{{ 'income.amount' | translate }}</b>
+         </div>
+      </div>
+
+      <hr/>
+      <!-- Income details -->
+      <div ng-repeat="con in contracts">
+        <div class="row">
+          <div class="col-80">{{con.startDate | date:'MM/dd'}} - {{con.endDate | date:'MM/dd'}}</div>
+          <div class="col-20 number">{{con.grandTotal | number:2}}</div>
+        </div>
+        <div class="row" ng-repeat="renewal in con.renewals">
+          <div class="col-80">{{renewal.renewalDate | date:'MM/dd'}} - {{renewal.endDate | date:'MM/dd'}}</div>
+          <div class="col-20 number">{{con.total | number:2}}</div>
+        </div>
+      </div>        
+          
+      <hr/>
+      <!-- footer / TOTAL -->
+      <div class="row">
+        <div class="col"><b>{{ 'income.total' | translate }}</b></div>
+        <div class="col-20 number"><b>{{ monthSum | number:2 }}</b></div>
+      </div>
+      <hr style="border-top: 3px double" />
+    </div>
+  </div>
+  </ion-content>
+</ion-view>
