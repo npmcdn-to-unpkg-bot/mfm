@@ -2,13 +2,13 @@
   <ion-nav-title>{{ 'income.title' | translate }}</ion-nav-title>
   <ion-content class="padding">
   <h3 style="text-align: center;">
-    {{ 'income.subtitle' | translate }} - {{ year }}
+    {{ realstate.name }} - {{ year }}
   </h3>
   <!-- Income -->
   <div class="card list">
     <a class="item item-icon-right" 
     ng-repeat="monthIncome in incomeModel"
-    href="#/app/realstates/{{realstateID}}/income/{{year}}/{{monthIncome.month}}">
+    href="#/app/realstates/{{realstate.id}}/income/{{year}}/{{monthIncome.month}}">
     <div class="row">
       <h2 class="col-60">{{ 'income.month' + monthIncome.month | translate}}</h2>
       <div class="col-40"> {{ monthIncome.total | number:2}}</div>

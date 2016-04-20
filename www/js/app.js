@@ -329,7 +329,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     'expanses.total': 'المجموع',
 
     'income.title': 'الايرادات',
-    'income.subtitle': 'الشقة ٣',
     'income.duration': 'الفترة',
     'income.total': '',
     'income.month1': 'يناير',
