@@ -1,0 +1,30 @@
+<ion-view>
+  <ion-nav-title>{{ 'expenses.title' | translate }}</ion-nav-title>
+  <ion-content class="padding">
+
+
+  <!-- Header -->
+  <h3 style="text-align: center;">
+    {{ realstate.name + ' - ' + year }}
+  </h3>
+
+  <!-- Expenses -->
+  <div class="card list">
+    <a class="item item-icon-right" 
+    ng-repeat="exp in expenses"
+    href="#/app/realstates/{{realstate.id}}/expense/{{year}}/{{exp.month}}">
+    <div class="row">
+      <h2 class="col-60">{{ 'month' + exp.month | translate}}</h2>
+      <div class="col-40"> {{ exp.total | number:2}}</div>
+      <i class="icon icon-accessory" ng-class="getIcon()"></i>
+    </div>
+    </a>
+  </div>
+  </ion-content>
+
+  <ion-footer-bar>
+  <button class="button button-calm">{{ 'expenses.addExpense' | translate }}</button>
+  <div class="buttons" ng-click="doSomething()">
+  </div>
+</ion-footer-bar>
+</ion-view>

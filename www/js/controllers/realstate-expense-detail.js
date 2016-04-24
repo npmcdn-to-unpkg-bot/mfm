@@ -1,10 +1,10 @@
 angular.module('starter.controllers')
 
-.controller('RealstateIncomeDetailController',  function($scope, $stateParams, $translate, RealStates){
+.controller('RealstateExpenseDetailController', function($scope, $stateParams, $translate, RealStates){
 	$scope.month = $stateParams.month;
 	$scope.year = $stateParams.year;
 
-	RealStates.incomeDetails($stateParams.realstateId,$scope.year, $scope.month)
+	RealStates.expenseDetails($stateParams.realstateId,$scope.year, $scope.month)
 	.then(function(data){
 		$scope.details = data.details;
 		$scope.monthSum = data.monthSum;

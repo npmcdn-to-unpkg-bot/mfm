@@ -10,7 +10,7 @@
     ng-repeat="monthIncome in incomeModel"
     href="#/app/realstates/{{realstate.id}}/income/{{year}}/{{monthIncome.month}}">
     <div class="row">
-      <h2 class="col-60">{{ 'income.month' + monthIncome.month | translate}}</h2>
+      <h2 class="col-60">{{ 'month' + monthIncome.month | translate}}</h2>
       <div class="col-40"> {{ monthIncome.total | number:2}}</div>
       <i class="icon icon-accessory" ng-class="getIcon()"></i>
     </div>

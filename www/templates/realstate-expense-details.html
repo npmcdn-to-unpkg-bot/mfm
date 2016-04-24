@@ -1,17 +1,17 @@
 <ion-view>
-  <ion-nav-title>{{ 'income.title' | translate }}</ion-nav-title>
+  <ion-nav-title>{{ 'expenses.title' | translate }}</ion-nav-title>
   <ion-content class="padding">
   <h3 style="text-align: center;">
     {{ 'month' + month | translate }}
   </h3>
-  <!-- Income -->
+  <!-- Expense -->
   <div class="card">
     <div class="item" >
       <!-- Header -->
       <div class="row">
-        <div class="col-80"><b>{{ 'income.duration' | translate }}</b>
+        <div class="col-80"><b>{{ 'expenses.description' | translate }}</b>
         </div>
-         <div class="col-20"><b>{{ 'income.amount' | translate }}</b>
+         <div class="col-20"><b>{{ 'expenses.amount' | translate }}</b>
          </div>
       </div>
 
@@ -19,7 +19,7 @@
       <!-- Income details -->
       <div ng-repeat="detail in details">
         <div class="row">
-          <div class="col-80">{{detail.startDate | date:'MM/dd'}} - {{detail.endDate | date:'MM/dd'}}</div>
+          <div class="col-80">{{detail.description}}</div>
           <div class="col-20 number">{{detail.amount | number:2}}</div>
         </div>
       </div>        

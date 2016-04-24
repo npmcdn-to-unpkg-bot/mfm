@@ -89,6 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
+
     // Realstate => Inceom details 
     .state('app.realstate-income-details', {
       url: '/realstates/:realstateId/income/{year}/{month}',
@@ -99,13 +100,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-    // Realstate => Expanses 
-    .state('app.realstate-expanses', {
-      url: '/realstates/:realstateId/expanses',
+    // Realstate => Expenses 
+    .state('app.realstate-expenses', {
+      url: '/realstates/:realstateId/expenses',
       views: {
         'menuContent': {
-          templateUrl: 'templates/realstate-expanses.html',
-          // controller: 'RealstateIncomeController'
+          templateUrl: 'templates/realstate-expenses.html',
+          controller: 'RealstateExpensesController'
+        }
+      }
+    })
+
+    // Realstate => expense details 
+    .state('app.realstate-expense-details', {
+      url: '/realstates/:realstateId/expense/{year}/{month}',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/realstate-expense-details.html',
+          controller: 'RealstateExpenseDetailController'
         }
       }
     })
@@ -217,7 +229,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     
     'realstateDetails.title': 'تفاصيل العقار',
     'realstateDetails.rent' : 'عمل ايجار جديد',
-    'realstateDetails.expanses' : 'المنصرفات',
+    'realstateDetails.expenses' : 'المنصرفات',
     'realstateDetails.income' : 'الايرادات',
     'realstateDetails.contractSummary' : 'ملخص العقد الحالي',
     'realstateDetails.renter' : 'المستأجر',
@@ -317,32 +329,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     'contractFinish.cancel' : 'لا',
     'contractFinish.ok' : 'نعم',
 
-    'expanses.title': 'المنصرفات',
-    'expanses.subtitle': 'الشقة ٣',
-    // TODO: remove sample data
-    'expanses.sampleMonth': 'فبراير',
-    'expanses.amount': 'القيمة',
-    'expanses.discription': 'الوصف',
-    'expanses.sample1Discription': 'اعمال سباكة',
-    'expanses.sample2Discription': 'تغيير انبوبة الغاز',
-    'expanses.sample3Discription': 'تغيير اللمبات',
-    'expanses.total': 'المجموع',
+    'expenses.title': 'المنصرفات',
+    'expenses.description': 'الوصف',
+    'expenses.amount': 'القيمة',
+    'expenses.addExpense': 'اضافة منصرف',
+
 
     'income.title': 'الايرادات',
     'income.duration': 'الفترة',
     'income.total': '',
-    'income.month1': 'يناير',
-    'income.month2': 'فبراير',
-    'income.month3': 'مارس',
-    'income.month4': 'ابريل',
-    'income.month5': 'مايو',
-    'income.month6': 'يونيو',
-    'income.month7': 'يوليو',
-    'income.month8': 'اغسطس',
-    'income.month9': 'سبتمبر',
-    'income.month10': 'اكتوبر',
-    'income.month11': 'نوفمبر',
-    'income.month12': 'ديسمبر',
+    'month1': 'يناير',
+    'month2': 'فبراير',
+    'month3': 'مارس',
+    'month4': 'ابريل',
+    'month5': 'مايو',
+    'month6': 'يونيو',
+    'month7': 'يوليو',
+    'month8': 'اغسطس',
+    'month9': 'سبتمبر',
+    'month10': 'اكتوبر',
+    'month11': 'نوفمبر',
+    'month12': 'ديسمبر',
 
     // TODO: remove sample data
     'income.sampleMonth': 'فبراير',
